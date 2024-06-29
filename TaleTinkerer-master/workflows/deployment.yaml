@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: tale-tinkerer
+  name: tale-tinkerer
+  namespace: gen-ai
+spec:
+  replicas: 2 # addings 2 replicas as pods
+  selector:
+    matchLabels:
+      app: tale-tinkerer
+  template:
+    metadata:
+      labels:
+        app: tale-tinkerer
+    spec:
+      containers:
+      - image: docker.io/rudrakshkarpe/taletinkerer:v1 # path to docker image
+        name: tale-tinkerer     # POD name 
+        ports:
+        - containerPort: 5001
+          protocol: TCP
